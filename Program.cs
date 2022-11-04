@@ -1,43 +1,36 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Net.Http.Headers;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 
-public class Documento
-{
-    public int Codice { get; set; }
-    public string Titolo { get; set; }
-    public int Anno { get; set; }
-    public string Settore { get; set; }
-    public bool Stato { get; set; }
-    public int Scaffale { get; set; }
-    public string Autore { get; set; }
+Libro l1 = new Libro(600, new Random().Next(1, 10000).ToString(), "Dune", 1965, "fantasy", true, 4, "F. Herbert");
+Libro l2 = new Libro(480, new Random().Next(1, 10000).ToString(), "Kobe e la compagnia degli anelli", 2021, "biografia", true, 2, "J. Perlman");
+Libro l3 = new Libro(468, new Random().Next(1, 10000).ToString(), "THe dark stuff", 2007, "documentario", true, 1, "Nick Kent");
 
-    public Documento (int codice, string titolo, int anno, string settore, bool stato, int scaffale, string autore)
-    {
-        Codice = codice;
-        Titolo = titolo;
-        Anno = anno;
-        Settore = settore;
-        Scaffale = scaffale;
-        Autore = autore;
-    }
-}
+Film f1 = new Film(116, new Random().Next(1, 10000).ToString(), "Ritorno al futuro", 1985, "fantascienza", true, 5, "Robert Zemeckis");
+Film f2 = new Film(169, new Random().Next(1, 10000).ToString(), "Interstellar", 2014, "fantascienza", true, 1, "Christopher Nolan");
+Film f3 = new Film(136, new Random().Next(1, 10000).ToString(), "Coach Carter", 2005, "sportivo", true, 3, "Thomas Carter");
 
-public class Libro : Documento
-{
-    public int NumPagine { get; set; }
+List<Documento> documenti = new List<Documento>();
 
-    public Libro ( int numPagine, int codice, string titolo, int anno, string settore, bool stato, int scaffale, string autore) : base(codice, titolo, anno, settore, stato, scaffale, autore)
-    {
-        NumPagine = numPagine;
-    } 
-}
+documenti.Add(l1);
+documenti.Add(l2);
+documenti.Add(l3);
+documenti.Add(f1);
+documenti.Add(f2);
+documenti.Add(f3);
 
-public class Dvd : Documento
-{
-    public int Durata { get; set; }
+Utente u1 = new Utente("Di Nardo", "Giacomo", "giacomodinardo@gmail.com", 345678912);
+Utente u2 = new Utente("Perini", "Fabiano", "perinifabiano@gmail.com", 345125478);
+Utente u3 = new Utente("Casentini", "Daniel", "daniel.casentini@gmail.com", 347458963);
 
-    public Dvd (int durata, int codice, string titolo, int anno, string settore, bool stato, int scaffale, string autore) : base(codice, titolo, anno, settore, stato, scaffale, autore)
-    {
-        Durata = durata;
-    }
-}
+List<Utente> utenti = new List<Utente>();
+
+utenti.Add(u1);
+utenti.Add(u2);
+utenti.Add(u3);
+
+Console.WriteLine("Inserisci titolo da ricercare: ");
+string docCercato = Console.ReadLine().ToString();
+
