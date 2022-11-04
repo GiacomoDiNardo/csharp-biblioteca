@@ -2,7 +2,7 @@
 
 public class Documento
 {
-    public string Codice { get; set; }
+    public int Codice { get; set; }
     public string Titolo { get; set; }
     public int Anno { get; set; }
     public string Settore { get; set; }
@@ -10,7 +10,7 @@ public class Documento
     public int Scaffale { get; set; }
     public string Autore { get; set; }
 
-    public Documento (string codice, string titolo, int anno, string settore, bool stato, int scaffale, string autore)
+    public Documento (int codice, string titolo, int anno, string settore, bool stato, int scaffale, string autore)
     {
         Codice = codice;
         Titolo = titolo;

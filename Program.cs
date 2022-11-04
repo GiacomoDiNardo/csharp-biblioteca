@@ -4,13 +4,13 @@ using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-Libro l1 = new Libro(600, new Random().Next(1, 10000).ToString(), "Dune", 1965, "fantasy", false, 4, "F. Herbert");
-Libro l2 = new Libro(480, new Random().Next(1, 10000).ToString(), "Kobe e la compagnia degli anelli", 2021, "biografia", true, 2, "J. Perlman");
-Libro l3 = new Libro(468, new Random().Next(1, 10000).ToString(), "THe dark stuff", 2007, "documentario", true, 1, "Nick Kent");
+Libro l1 = new Libro(600, new Random().Next(1, 10000), "Dune", 1965, "fantasy", false, 4, "F. Herbert");
+Libro l2 = new Libro(480, new Random().Next(1, 10000), "Kobe e la compagnia degli anelli", 2021, "biografia", true, 2, "J. Perlman");
+Libro l3 = new Libro(468, 9452, "THe dark stuff", 2007, "documentario", true, 1, "Nick Kent");
 
-Film f1 = new Film(116, new Random().Next(1, 10000).ToString(), "Ritorno al futuro", 1985, "fantascienza", true, 5, "Robert Zemeckis");
-Film f2 = new Film(169, new Random().Next(1, 10000).ToString(), "Interstellar", 2014, "fantascienza", true, 1, "Christopher Nolan");
-Film f3 = new Film(136, new Random().Next(1, 10000).ToString(), "Coach Carter", 2005, "sportivo", true, 3, "Thomas Carter");
+Film f1 = new Film(116, 9687, "Ritorno al futuro", 1985, "fantascienza", true, 5, "Robert Zemeckis");
+Film f2 = new Film(169, 265, "Interstellar", 2014, "fantascienza", true, 1, "Christopher Nolan");
+Film f3 = new Film(136, 8470, "Coach Carter", 2005, "sportivo", true, 3, "Thomas Carter");
 
 List<Documento> documenti = new List<Documento>();
 
@@ -31,28 +31,22 @@ utenti.Add(u1);
 utenti.Add(u2);
 utenti.Add(u3);
 
-Console.WriteLine("Inserisci titolo da ricercare: ");
-string docCercato = Console.ReadLine();
+Console.WriteLine(l1.Codice);
 
-foreach (Documento item in documenti)
+Console.WriteLine("Inserisci titolo o codice da ricercare: ");
+string docCercato = Console.ReadLine().ToString();
+
+foreach (Documento documento in documenti)
 {
-    if (item.Titolo == docCercato)
+    if (documento.Titolo == docCercato || documento.Codice.ToString() == docCercato)
     {
-        if (item.Stato == true)
+        if (documento.Stato)
         {
-            Console.WriteLine("L'articolo {0} è presente in libreria al settore {1}, scaffale {2}", item.Titolo, item.Settore, item.Scaffale);
-            break;
+            Console.WriteLine("L'articolo {0} è presente in libreria al settore {1}, scaffale {2}", documento.Titolo, documento.Settore, documento.Scaffale);
         }
         else
         {
-            Console.WriteLine("L'articolo {0} è attualmente in prestito.", item.Titolo);
-            break;
+            Console.WriteLine("L'articolo {0} è attualmente in prestito o non disponibile.", documento.Titolo);
         }
     }
-    else
-    {
-        Console.WriteLine("L'articolo {0} non è presente.", docCercato);
-        break;
-    }
-
 }
