@@ -16,6 +16,7 @@ public class Documento
         Titolo = titolo;
         Anno = anno;
         Settore = settore;
+        Stato = stato;
         Scaffale = scaffale;
         Autore = autore;
     }

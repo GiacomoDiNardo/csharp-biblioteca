@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
-Libro l1 = new Libro(600, new Random().Next(1, 10000).ToString(), "Dune", 1965, "fantasy", true, 4, "F. Herbert");
+Libro l1 = new Libro(600, new Random().Next(1, 10000).ToString(), "Dune", 1965, "fantasy", false, 4, "F. Herbert");
 Libro l2 = new Libro(480, new Random().Next(1, 10000).ToString(), "Kobe e la compagnia degli anelli", 2021, "biografia", true, 2, "J. Perlman");
 Libro l3 = new Libro(468, new Random().Next(1, 10000).ToString(), "THe dark stuff", 2007, "documentario", true, 1, "Nick Kent");
 
@@ -32,5 +32,27 @@ utenti.Add(u2);
 utenti.Add(u3);
 
 Console.WriteLine("Inserisci titolo da ricercare: ");
-string docCercato = Console.ReadLine().ToString();
+string docCercato = Console.ReadLine();
 
+foreach (Documento item in documenti)
+{
+    if (item.Titolo == docCercato)
+    {
+        if (item.Stato == true)
+        {
+            Console.WriteLine("L'articolo {0} è presente in libreria al settore {1}, scaffale {2}", item.Titolo, item.Settore, item.Scaffale);
+            break;
+        }
+        else
+        {
+            Console.WriteLine("L'articolo {0} è attualmente in prestito.", item.Titolo);
+            break;
+        }
+    }
+    else
+    {
+        Console.WriteLine("L'articolo {0} non è presente.", docCercato);
+        break;
+    }
+
+}
